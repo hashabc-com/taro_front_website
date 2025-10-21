@@ -7,20 +7,19 @@ export default function Footer() {
   const t = useTranslations('Footer');
   
   const navigation = {
-    product: [
-      { name: t('links.gateway'), href: '#' },
-      { name: t('links.api'), href: '#' },
-      { name: t('links.dashboard'), href: '#' },
+    about: [
+      { name: t('links.ourServices'), href: '/about#services' },
+      { name: t('links.ourAdvantages'), href: '/about#advantages' },
     ],
-    company: [
-      { name: t('links.about'), href: '#' },
-      { name: t('links.contact'), href: '#' },
-      { name: t('links.careers'), href: '#' },
+    products: [
+      { name: t('links.statistics'), href: '/products#statistics' },
+      { name: t('links.globalSolution'), href: '/products#global' },
+      { name: t('links.gateway'), href: '/products#gateway' },
+      { name: t('links.riskControl'), href: '/products#riskcontrol' },
+      { name: t('links.accounting'), href: '/products#accounting' },
     ],
-    resources: [
-      { name: t('links.documentation'), href: '#' },
-      { name: t('links.reference'), href: '#' },
-      { name: t('links.support'), href: '#' },
+    api: [
+      { name: t('links.apiDocs'), href: 'https://doc.taropay.com/', external: true },
     ],
   };
 
@@ -42,9 +41,9 @@ export default function Footer() {
           </div>
           <div className="animate-item mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3 xl:col-span-2 xl:mt-0">
             <div>
-              <h3 className="text-sm font-semibold leading-6 text-white">{t('product')}</h3>
+              <h3 className="text-sm font-semibold leading-6 text-white">{t('about')}</h3>
               <ul role="list" className="mt-6 space-y-4">
-                {navigation.product.map((item) => (
+                {navigation.about.map((item) => (
                   <li key={item.name}>
                     <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1">
                       {item.name}
@@ -54,9 +53,9 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold leading-6 text-white">{t('company')}</h3>
+              <h3 className="text-sm font-semibold leading-6 text-white">{t('products')}</h3>
               <ul role="list" className="mt-6 space-y-4">
-                {navigation.company.map((item) => (
+                {navigation.products.map((item) => (
                   <li key={item.name}>
                     <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1">
                       {item.name}
@@ -66,12 +65,22 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold leading-6 text-white">{t('resources')}</h3>
+              <h3 className="text-sm font-semibold leading-6 text-white">{t('api')}</h3>
               <ul role="list" className="mt-6 space-y-4">
-                {navigation.resources.map((item) => (
+                {navigation.api.map((item) => (
                   <li key={item.name}>
-                    <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1">
+                    <a 
+                      href={item.href} 
+                      target={item.external ? '_blank' : undefined}
+                      rel={item.external ? 'noopener noreferrer' : undefined}
+                      className="text-sm leading-6 text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1"
+                    >
                       {item.name}
+                      {item.external && (
+                        <svg className="inline-block ml-1 h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      )}
                     </a>
                   </li>
                 ))}

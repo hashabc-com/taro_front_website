@@ -4,6 +4,7 @@ import "./globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { isLocale } from "@/i18n/config";
 import { notFound } from "next/navigation";
+import TwitterFloatingButton from "@/components/TwitterFloatingButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,6 +46,7 @@ export default async function RootLayout({
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
+          <TwitterFloatingButton />
         </NextIntlClientProvider>
       </body>
     </html>

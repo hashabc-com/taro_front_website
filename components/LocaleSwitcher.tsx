@@ -2,11 +2,12 @@
 
 import { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { ChevronDownIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { FlagIcon, type FlagCode } from './ui/flag-icons';
 
 const locales = [
-  { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'zh-CN', name: '中文', flag: '🇨🇳' },
+  { code: 'en', name: 'English', flag: 'US' as FlagCode },
+  { code: 'zh-CN', name: '中文', flag: 'CN' as FlagCode },
 ];
 
 export default function LocaleSwitcher() {
@@ -29,9 +30,8 @@ export default function LocaleSwitcher() {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 rounded-md border border-gray-600 bg-gray-800 px-3 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"
       >
-        <GlobeAltIcon className="h-4 w-4" />
+        <FlagIcon code={currentLocaleData.flag} className="w-5 h-3" />
         <span className="hidden sm:inline">{currentLocaleData.name}</span>
-        <span className="sm:hidden">{currentLocaleData.flag}</span>
         <ChevronDownIcon className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
@@ -53,7 +53,7 @@ export default function LocaleSwitcher() {
                       : 'text-gray-300'
                   }`}
                 >
-                  <span className="text-lg">{locale.flag}</span>
+                  <FlagIcon code={locale.flag} className="w-5 h-3" />
                   <span>{locale.name}</span>
                 </button>
               ))}

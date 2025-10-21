@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AnimatedSection from './AnimatedSection';
+import { FlagIcon, type FlagCode } from './ui/flag-icons';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -28,16 +29,16 @@ export default function GlobalCoverage() {
   }, []);
   
   const countries = [
-    { code: '🇰🇪', name: 'Kenya' },
-    { code: '🇧🇩', name: 'Bangladesh' },
-    { code: '🇮🇩', name: 'Indonesia' },
-    { code: '🇧🇷', name: 'Brazil' },
-    { code: '🇮🇳', name: 'India' },
-    { code: '🇵🇰', name: 'Pakistan' },
-    { code: '🇰🇷', name: 'South Korea' },
-    { code: '🇹🇭', name: 'Thailand' },
-    { code: '🇻🇳', name: 'Vietnam' },
-    { code: '🇲🇽', name: 'Mexico' },
+    { code: 'KE' as FlagCode, name: 'Kenya' },
+    { code: 'BD' as FlagCode, name: 'Bangladesh' },
+    { code: 'ID' as FlagCode, name: 'Indonesia' },
+    { code: 'PH' as FlagCode, name: 'Philippines' },
+    { code: 'IN' as FlagCode, name: 'India' },
+    { code: 'TH' as FlagCode, name: 'Thailand' },
+    { code: 'VN' as FlagCode, name: 'Vietnam' },
+    { code: 'MY' as FlagCode, name: 'Malaysia' },
+    { code: 'SG' as FlagCode, name: 'Singapore' },
+    { code: 'AE' as FlagCode, name: 'UAE' },
   ];
 
   return (
@@ -77,8 +78,8 @@ export default function GlobalCoverage() {
                 animationDelay: `${index * 0.1}s`
               }}
             >
-              <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-200 ease-out">
-                {country.code}
+              <div className="mb-3 group-hover:scale-110 transition-transform duration-200 ease-out flex justify-center items-center">
+                <FlagIcon code={country.code} className="w-16 h-12" />
               </div>
               <div className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors duration-200 ease-out">
                 {country.name}

@@ -1,10 +1,10 @@
 {
   "Nav": {
     "home": "Home",
-    "features": "Features", 
-    "solutions": "Solutions",
+    "features": "Products", 
     "about": "About us",
     "contact": "Contact",
+    "apidoc": "API Docs",
     "signin": "Sign in",
     "getstarted": "Get Started"
   },
@@ -27,8 +27,8 @@
     "more": "And 190+ more countries and regions..."
   },
   "Features": {
-    "title": "TaroPay Redefines Payment to a New Level",
-    "subtitle": "Experience seamless, secure, and cost-effective payment solutions designed for global businesses",
+    "title": "Products & Services",
+    "subtitle": "Comprehensive payment solutions designed for global businesses",
     "convenience": {
       "title": "Convenience",
       "description": "TaroPay provides a stable payment gateway that merchants can integrate into their products through API interface calls. Simple, fast and easy access."
@@ -52,6 +52,34 @@
     "response": {
       "title": "Quick Response",
       "description": "TaroPay payment system values the responsiveness of customer service and strives to respond in the shortest possible time after users raise questions or ask for support. We support 7*24 customer service to improve customer satisfaction."
+    }
+  },
+  "Products": {
+    "title": "Products & Services", 
+    "subtitle": "Comprehensive payment solutions to grow your business globally",
+    "statistics": {
+      "title": "Smart Business Analytics",
+      "description": "Through clear transaction statistics and intuitive business trends, you can better grasp marketing direction, easily control daily operations, and naturally lead business success."
+    },
+    "global": {
+      "title": "Global Payment Solutions",
+      "description": "Based on a one-stop payment processing platform, we will help you enter new markets, quickly introduce multiple payment methods, and open broader payment channels. Partner with us for unlimited possibilities and unstoppable business growth!"
+    },
+    "gateway": {
+      "title": "Easy Payment Gateway Integration",
+      "description": "We are committed to making payment experience fast, easy and seamless. Explore our payment gateway to learn how to quickly integrate and make your payment process simple and efficient, boosting user satisfaction!"
+    },
+    "riskcontrol": {
+      "title": "Flexible Dynamic Risk Control",
+      "description": "We provide flexible and reliable risk control modules, customizing comprehensive and effective risk control solutions according to merchants' business scenarios. Real-time monitoring and analysis of all transactions to identify abnormal payment orders and effectively protect merchants' funds and transaction security."
+    },
+    "accounting": {
+      "title": "Simplified Accounting",
+      "description": "TaroPay integrates your merchant account to the cloud, making reconciliation effortless. With simple steps, you can quickly open your dedicated account and enjoy convenient and efficient payment management experience!"
+    },
+    "multilang": {
+      "title": "Multi-language API Integration",
+      "description": "Support API interfaces in multiple programming languages, allowing technical teams to quickly integrate our payment services. No matter what technology stack you use, you can easily integrate."
     }
   },
   "Solutions": {
@@ -79,20 +107,19 @@
   },
   "Footer": {
     "description": "Building the most stable payment system in the world and leading the future with international payments.",
-    "product": "Product",
-    "company": "Company", 
-    "resources": "Resources",
+    "about": "About Us",
+    "products": "Products & Services",
+    "api": "API Documentation", 
     "copyright": "© 2025 TaroPay. All rights reserved.",
     "links": {
-      "gateway": "Payment Gateway",
-      "api": "API Integration",
-      "dashboard": "Dashboard",
-      "about": "About Us",
-      "contact": "Contact",
-      "careers": "Careers",
-      "documentation": "Documentation",
-      "reference": "API Reference",
-      "support": "Support"
+      "ourServices": "Our Services",
+      "ourAdvantages": "Our Advantages",
+      "statistics": "Smart Business Analytics",
+      "globalSolution": "Global Payment Solutions",
+      "gateway": "Easy Payment Gateway Integration",
+      "riskControl": "Flexible Dynamic Risk Control",
+      "accounting": "Simplified Accounting",
+      "apiDocs": "API Documentation"
     }
   },
   "Home": {
@@ -100,6 +127,62 @@
     "intro": "This is a demo with {count} message."
   },
   "About": {
-    "title": "About us"
+    "title": "About Us",
+    "hero": {
+      "title": "Our Services",
+      "description": "TaroPay is a platform dedicated to global payment solutions. We have established partnerships with numerous banks and payment companies worldwide, committed to providing secure, fast, and stable one-stop transaction payment and settlement solutions for merchants in all industries globally.",
+      "content": "No matter where you are, our platform will provide you with reliable payment processing and settlement services. We work closely with multiple international payment institutions to ensure the security of your funds and provide various payment methods to meet the needs of different regions and users. With our payment service platform, you can easily handle global transactions and achieve the convenience of local and cross-border payments. Our goal is to make payments simpler and provide strong support for your business development."
+    },
+    "advantages": {
+      "title": "Our Advantages",
+      "subtitle": "Providing payment solutions for merchants in all industries globally",
+      "convenient": {
+        "title": "Convenient and Efficient Integration",
+        "description": "Provide API payment gateway to maximize reduction of merchant development and quick integration."
+      },
+      "settlement": {
+        "title": "D0 Real-time Settlement",
+        "description": "Provide multiple payment and settlement service channels with real-time fund settlement."
+      },
+      "security": {
+        "title": "Intelligent Dynamic Risk Control",
+        "description": "World-class encryption algorithms and security technology architecture, with intelligent dynamic risk control based on business scenarios."
+      },
+      "service": {
+        "title": "Quality and Timely Service",
+        "description": "7×24 hours online human service to promptly answer any questions you have about using the payment system."
+      }
+    },
+    "goals": {
+      "title": "Our Goals",
+      "global": {
+        "title": "Globalization",
+        "description": "Committed to building the world's most stable payment system, leading the future with international payments. Our motto is to be the global leader in top-tier secure and stable payment channels."
+      },
+      "local": {
+        "title": "Localization",
+        "description": "TaroPay caters to local payment habits and localized environments in every region we operate. We maintain the lowest rates while ensuring the industry's highest payment success rates. Making customer payment experience better is our long-term goal."
+      }
+    },
+    "future": {
+      "title": "Next Steps",
+      "description": "To provide better payment solution experiences for merchants in more regions, we plan to expand to countries with large populations and high GDP, such as Nigeria, South Africa, Bangladesh, Pakistan, and others."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "If you urgently need a stable, secure, and convenient payment solution, please fill out our partner contact form.",
+      "form": {
+        "name": "Name",
+        "lastname": "Last Name",
+        "email": "Work Email",
+        "sales": "Monthly Sales",
+        "phone": "Phone Number",
+        "company": "Company",
+        "website": "Website URL (starting with https://)",
+        "message": "Please leave a message so we can better serve you",
+        "submit": "Contact Us",
+        "privacy": "I confirm that I have read TaroPay's Privacy Policy and agree to the use of my data in accordance with that policy."
+      }
+    }
   }
 }

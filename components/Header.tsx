@@ -12,6 +12,13 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+// Navigation item type
+interface NavigationItem {
+  name: string;
+  href: string;
+  external?: boolean;
+}
+
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
@@ -22,51 +29,7 @@ export default function Header() {
   useEffect(() => {
     if (!headerRef.current) return;
 
-    // Header entrance animation
-    gsap.fromTo(headerRef.current, 
-      { 
-        y: -100, 
-        opacity: 0 
-      },
-      { 
-        y: 0, 
-        opacity: 1, 
-        duration: 1,
-        ease: "power3.out"
-      }
-    );
-
-    // Logo animation
-    if (logoRef.current) {
-      gsap.fromTo(logoRef.current,
-        { scale: 0.8, opacity: 0 },
-        { 
-          scale: 1, 
-          opacity: 1, 
-          duration: 0.8,
-          delay: 0.3,
-          ease: "back.out(1.7)"
-        }
-      );
-    }
-
-    // Navigation items stagger animation
-    if (navRef.current) {
-      const navItems = navRef.current.querySelectorAll('a');
-      gsap.fromTo(navItems,
-        { y: 20, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          delay: 0.5,
-          stagger: 0.1,
-          ease: "power2.out"
-        }
-      );
-    }
-
-    // Header scroll effect - 移除会导致间距的缩放动画
+    // 只保留Header滚动效果的背景模糊
     ScrollTrigger.create({
       trigger: "body",
       start: "top top",
@@ -87,12 +50,11 @@ export default function Header() {
     };
   }, []);
 
-  const navigation = [
-    { name: t('home'), href: '#' },
-    { name: t('features'), href: '#features' },
-    { name: t('solutions'), href: '#solutions' },
-    { name: t('about'), href: '#about' },
-    { name: t('contact'), href: '#contact' },
+  const navigation: NavigationItem[] = [
+    { name: t('home'), href: '/' },
+    { name: t('features'), href: '/products' },
+    { name: t('about'), href: '/about' },
+    { name: t('apidoc'), href: 'https://doc.taropay.com/', external: true }
   ];
 
   return (
@@ -126,10 +88,17 @@ export default function Header() {
           {navigation.map((item) => (
             <a 
               key={item.name} 
-              href={item.href} 
+              href={item.href}
+              target={item.external ? '_blank' : undefined}
+              rel={item.external ? 'noopener noreferrer' : undefined}
               className="text-sm font-semibold leading-6 text-gray-300 hover:text-white transition-all duration-300 hover:scale-105 relative group"
             >
               {item.name}
+              {item.external && (
+                <svg className="inline-block ml-1 h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              )}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
@@ -173,10 +142,17 @@ export default function Header() {
                     <a
                       key={item.name}
                       href={item.href}
+                      target={item.external ? '_blank' : undefined}
+                      rel={item.external ? 'noopener noreferrer' : undefined}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-800 hover:text-white"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
+                      {item.external && (
+                        <svg className="inline-block ml-1 h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      )}
                     </a>
                   ))}
                 </div>
