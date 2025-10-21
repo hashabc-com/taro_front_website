@@ -1,0 +1,13 @@
+{
+  "Nav": {
+    "home": "Home",
+    "about": "About us"
+  },
+  "Home": {
+    "title": "Welcome",
+    "intro": "This is a demo with {count} message."
+  },
+  "About": {
+    "title": "About Company"
+  }
+}
