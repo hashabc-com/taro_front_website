@@ -23,6 +23,28 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* 确保Header始终贴顶且无间距 */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Header 特殊样式确保无间距 */
+header[class*="fixed"] {
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100vw !important;
+  margin: 0 !important;
+  transform: none !important;
 }
 
 /* Smooth scrolling */
@@ -46,4 +68,74 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(37, 99, 235);
+}
+
+/* 优化的浮动动画 - 使用CSS而非JavaScript以提高性能 */
+@keyframes float-1 {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-8px) rotate(1deg); 
+  }
+}
+
+@keyframes float-2 {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-12px) rotate(-1deg); 
+  }
+}
+
+@keyframes float-3 {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-6px) rotate(0.5deg); 
+  }
+}
+
+/* 减少动画强度以避免卡顿 */
+@media (prefers-reduced-motion: reduce) {
+  @keyframes float-1 {
+    0%, 100% { 
+      transform: translateY(0px) rotate(0deg); 
+    }
+    50% { 
+      transform: translateY(-2px) rotate(0deg); 
+    }
+  }
+  
+  @keyframes float-2 {
+    0%, 100% { 
+      transform: translateY(0px) rotate(0deg); 
+    }
+    50% { 
+      transform: translateY(-2px) rotate(0deg); 
+    }
+  }
+  
+  @keyframes float-3 {
+    0%, 100% { 
+      transform: translateY(0px) rotate(0deg); 
+    }
+    50% { 
+      transform: translateY(-2px) rotate(0deg); 
+    }
+  }
+}
+
+/* 确保GPU加速 */
+.animate-item {
+  will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* 优化的transition */
+.transition-optimized {
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out, box-shadow 0.2s ease-out;
 }

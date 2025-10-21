@@ -27,31 +27,31 @@
     "more": "And 190+ more countries and regions..."
   },
   "Features": {
-    "title": "TarsPay Redefines Payment to a New Level",
+    "title": "TaroPay Redefines Payment to a New Level",
     "subtitle": "Experience seamless, secure, and cost-effective payment solutions designed for global businesses",
     "convenience": {
       "title": "Convenience",
-      "description": "TarsPay provides a stable payment gateway that merchants can integrate into their products through API interface calls. Simple, fast and easy access."
+      "description": "TaroPay provides a stable payment gateway that merchants can integrate into their products through API interface calls. Simple, fast and easy access."
     },
     "rapidity": {
       "title": "Rapidity", 
-      "description": "TarsPay supports D0 real-time settlement in all regions, and the transaction funds arrive in real time, whether it is a receipt or a payment, it can reach the corresponding payee's account within seconds."
+      "description": "TaroPay supports D0 real-time settlement in all regions, and the transaction funds arrive in real time, whether it is a receipt or a payment, it can reach the corresponding payee's account within seconds."
     },
     "security": {
       "title": "Security",
-      "description": "TarsPay payment system uses state-of-the-art security technology to protect merchants' funds. Bank-grade encryption and multi-factor authentication are used to ensure the security of the payment process."
+      "description": "TaroPay payment system uses state-of-the-art security technology to protect merchants' funds. Bank-grade encryption and multi-factor authentication are used to ensure the security of the payment process."
     },
     "cost": {
       "title": "Cost Effectiveness",
-      "description": "TarsPay payment system has lower transaction costs. You can reduce transaction fees, improve efficiency and reduce operating costs by using our payment system."
+      "description": "TaroPay payment system has lower transaction costs. You can reduce transaction fees, improve efficiency and reduce operating costs by using our payment system."
     },
     "global": {
       "title": "Global and Industry-Wide",
-      "description": "The TarsPay payment system supports the local payment needs of the entire industry in different countries and regions. Household can make and receive payments globally, without being restricted by geography or industry."
+      "description": "The TaroPay payment system supports the local payment needs of the entire industry in different countries and regions. Household can make and receive payments globally, without being restricted by geography or industry."
     },
     "response": {
       "title": "Quick Response",
-      "description": "TarsPay payment system values the responsiveness of customer service and strives to respond in the shortest possible time after users raise questions or ask for support. We support 7*24 customer service to improve customer satisfaction."
+      "description": "TaroPay payment system values the responsiveness of customer service and strives to respond in the shortest possible time after users raise questions or ask for support. We support 7*24 customer service to improve customer satisfaction."
     }
   },
   "Solutions": {
