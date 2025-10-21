@@ -1,13 +1,105 @@
 {
   "Nav": {
     "home": "Home",
-    "about": "About us"
+    "features": "Features", 
+    "solutions": "Solutions",
+    "about": "About us",
+    "contact": "Contact",
+    "signin": "Sign in",
+    "getstarted": "Get Started"
+  },
+  "Hero": {
+    "title": "One-Stop Global Payment Solution",
+    "subtitle": "TaroPay has crossed the globe to make payments effortless",
+    "description": "We are committed to building the most stable payment system in the world and leading the future with international payments.",
+    "getstarted": "Get Started",
+    "learnmore": "Learn More",
+    "stats": {
+      "countries": "Countries Covered",
+      "uptime": "Uptime Guarantee", 
+      "speed": "Transaction Speed",
+      "support": "Global Support"
+    }
+  },
+  "GlobalCoverage": {
+    "title": "Global Coverage Across Multiple Regions",
+    "description": "TaroPay supports payments in over 200 countries and regions worldwide, providing seamless cross-border payment solutions.",
+    "more": "And 190+ more countries and regions..."
+  },
+  "Features": {
+    "title": "TarsPay Redefines Payment to a New Level",
+    "subtitle": "Experience seamless, secure, and cost-effective payment solutions designed for global businesses",
+    "convenience": {
+      "title": "Convenience",
+      "description": "TarsPay provides a stable payment gateway that merchants can integrate into their products through API interface calls. Simple, fast and easy access."
+    },
+    "rapidity": {
+      "title": "Rapidity", 
+      "description": "TarsPay supports D0 real-time settlement in all regions, and the transaction funds arrive in real time, whether it is a receipt or a payment, it can reach the corresponding payee's account within seconds."
+    },
+    "security": {
+      "title": "Security",
+      "description": "TarsPay payment system uses state-of-the-art security technology to protect merchants' funds. Bank-grade encryption and multi-factor authentication are used to ensure the security of the payment process."
+    },
+    "cost": {
+      "title": "Cost Effectiveness",
+      "description": "TarsPay payment system has lower transaction costs. You can reduce transaction fees, improve efficiency and reduce operating costs by using our payment system."
+    },
+    "global": {
+      "title": "Global and Industry-Wide",
+      "description": "The TarsPay payment system supports the local payment needs of the entire industry in different countries and regions. Household can make and receive payments globally, without being restricted by geography or industry."
+    },
+    "response": {
+      "title": "Quick Response",
+      "description": "TarsPay payment system values the responsiveness of customer service and strives to respond in the shortest possible time after users raise questions or ask for support. We support 7*24 customer service to improve customer satisfaction."
+    }
+  },
+  "Solutions": {
+    "title": "One-Stop Global Payment Solution",
+    "subtitle": "Everything you need to accept payments and grow your business globally",
+    "account": {
+      "title": "Free Opening of Payment Account",
+      "description": "Open a local currency account online, without complicated approval process, and it only takes 1 minute."
+    },
+    "statistics": {
+      "title": "Integration of Transaction Statistics", 
+      "description": "Automatically record and integrate transaction records and payment trend analysis to help merchants better grasp business data."
+    },
+    "currency": {
+      "title": "Multi-Currency Support",
+      "description": "Support multiple currencies and payment methods to meet the needs of merchants in different regions and industries."
+    },
+    "learnmore": "Learn more",
+    "cta": {
+      "title": "Ready to transform your payment system?",
+      "description": "Join thousands of businesses that trust TaroPay for their global payment needs.",
+      "getstarted": "Get Started Free",
+      "demo": "Schedule Demo"
+    }
+  },
+  "Footer": {
+    "description": "Building the most stable payment system in the world and leading the future with international payments.",
+    "product": "Product",
+    "company": "Company", 
+    "resources": "Resources",
+    "copyright": "© 2025 TaroPay. All rights reserved.",
+    "links": {
+      "gateway": "Payment Gateway",
+      "api": "API Integration",
+      "dashboard": "Dashboard",
+      "about": "About Us",
+      "contact": "Contact",
+      "careers": "Careers",
+      "documentation": "Documentation",
+      "reference": "API Reference",
+      "support": "Support"
+    }
   },
   "Home": {
     "title": "Welcome",
     "intro": "This is a demo with {count} message."
   },
   "About": {
-    "title": "About Company"
+    "title": "About us"
   }
 }

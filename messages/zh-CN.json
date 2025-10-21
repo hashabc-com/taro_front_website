@@ -1,13 +1,105 @@
 {
   "Nav": {
     "home": "首页",
-    "about": "关于我们"
+    "features": "功能特色",
+    "solutions": "解决方案", 
+    "about": "关于我们",
+    "contact": "联系我们",
+    "signin": "登录",
+    "getstarted": "立即开始"
+  },
+  "Hero": {
+    "title": "一站式全球支付解决方案",
+    "subtitle": "TaroPay 跨足全球，支付轻松无忧",
+    "description": "致力于打造全球最稳定的支付系统，国际支付引领未来",
+    "getstarted": "立即开始",
+    "learnmore": "了解更多",
+    "stats": {
+      "countries": "覆盖国家",
+      "uptime": "在线时间保证",
+      "speed": "交易速度", 
+      "support": "全球支持"
+    }
+  },
+  "GlobalCoverage": {
+    "title": "覆盖全球多个地区",
+    "description": "TaroPay 支持全球 200 多个国家和地区的支付，提供无缝的跨境支付解决方案。",
+    "more": "以及其他 190 多个国家和地区..."
+  },
+  "Features": {
+    "title": "TarsPay 将支付重新定义到新高度",
+    "subtitle": "体验为全球企业设计的无缝、安全、经济高效的支付解决方案",
+    "convenience": {
+      "title": "便利性",
+      "description": "TarsPay 提供稳定的支付网关，商户可以通过 API 接口调用集成到他们的产品中。简单、快速、易于接入。"
+    },
+    "rapidity": {
+      "title": "快速性",
+      "description": "TarsPay 在所有地区支持 D0 实时结算，交易资金实时到账，无论是收款还是付款，都能在几秒钟内到达相应收款人账户。"
+    },
+    "security": {
+      "title": "安全性",
+      "description": "TarsPay 支付系统采用最先进的安全技术保护商户资金。使用银行级加密和多重身份验证确保支付过程的安全性。"
+    },
+    "cost": {
+      "title": "成本效益",
+      "description": "TarsPay 支付系统具有更低的交易成本。通过使用我们的支付系统，您可以降低交易费用、提高效率并减少运营成本。"
+    },
+    "global": {
+      "title": "全球化和行业化",
+      "description": "TarsPay 支付系统支持不同国家和地区整个行业的本地支付需求。家庭可以全球收付款，不受地理或行业限制。"
+    },
+    "response": {
+      "title": "快速响应",
+      "description": "TarsPay 支付系统重视客户服务的响应能力，力求在用户提出问题或寻求支持后在最短时间内响应。我们支持 7*24 客户服务以提高客户满意度。"
+    }
+  },
+  "Solutions": {
+    "title": "一站式全球支付解决方案",
+    "subtitle": "您接受付款和在全球范围内发展业务所需的一切",
+    "account": {
+      "title": "免费开通支付账户",
+      "description": "在线开通本币账户，无需复杂的审批流程，只需 1 分钟。"
+    },
+    "statistics": {
+      "title": "交易统计集成",
+      "description": "自动记录和整合交易记录和支付趋势分析，帮助商户更好地掌握业务数据。"
+    },
+    "currency": {
+      "title": "多币种支持",
+      "description": "支持多种货币和支付方式，满足不同地区和行业商户的需求。"
+    },
+    "learnmore": "了解更多",
+    "cta": {
+      "title": "准备好改变您的支付系统了吗？",
+      "description": "加入信任 TaroPay 满足全球支付需求的数千家企业。",
+      "getstarted": "免费开始",
+      "demo": "预约演示"
+    }
+  },
+  "Footer": {
+    "description": "致力于打造全球最稳定的支付系统，国际支付引领未来。",
+    "product": "产品",
+    "company": "公司",
+    "resources": "资源",
+    "copyright": "© 2025 TaroPay. 保留所有权利。",
+    "links": {
+      "gateway": "支付网关",
+      "api": "API 集成",
+      "dashboard": "控制面板",
+      "about": "关于我们",
+      "contact": "联系我们",
+      "careers": "招聘",
+      "documentation": "文档",
+      "reference": "API 参考",
+      "support": "技术支持"
+    }
   },
   "Home": {
     "title": "欢迎",
     "intro": "这是一个包含 {count} 条内容的示例。"
   },
   "About": {
-    "title": "关于公司"
+    "title": "关于我们"
   }
 }
