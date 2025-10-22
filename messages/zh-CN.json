@@ -17,7 +17,7 @@
     "stats": {
       "countries": "覆盖国家",
       "uptime": "在线时间保证",
-      "speed": "交易速度", 
+      "speed": "交易速度",
       "support": "全球支持"
     }
   },
@@ -57,6 +57,7 @@
   "Products": {
     "title": "产品服务",
     "subtitle": "全方位的支付解决方案，让您的业务遍布全球",
+    "learnmore": "了解更多产品详情",
     "statistics": {
       "title": "智能的经营统计分析",
       "description": "通过清晰的订单交易统计和直观的经营趋势，您可以更好地掌握营销方向，轻松控制每日经营，自然而然地引领业务成功。"
@@ -108,7 +109,7 @@
   "Footer": {
     "description": "致力于打造全球最稳定的支付系统，国际支付引领未来。",
     "about": "关于我们",
-    "products": "产品服务", 
+    "products": "产品服务",
     "api": "API文档",
     "copyright": "© 2025 TaroPay. 保留所有权利。",
     "links": {

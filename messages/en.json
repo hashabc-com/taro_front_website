@@ -1,7 +1,7 @@
 {
   "Nav": {
     "home": "Home",
-    "features": "Products", 
+    "features": "Products",
     "about": "About us",
     "contact": "Contact",
     "apidoc": "API Docs",
@@ -16,7 +16,7 @@
     "learnmore": "Learn More",
     "stats": {
       "countries": "Countries Covered",
-      "uptime": "Uptime Guarantee", 
+      "uptime": "Uptime Guarantee",
       "speed": "Transaction Speed",
       "support": "Global Support"
     }
@@ -34,7 +34,7 @@
       "description": "TaroPay provides a stable payment gateway that merchants can integrate into their products through API interface calls. Simple, fast and easy access."
     },
     "rapidity": {
-      "title": "Rapidity", 
+      "title": "Rapidity",
       "description": "TaroPay supports D0 real-time settlement in all regions, and the transaction funds arrive in real time, whether it is a receipt or a payment, it can reach the corresponding payee's account within seconds."
     },
     "security": {
@@ -55,8 +55,9 @@
     }
   },
   "Products": {
-    "title": "Products & Services", 
+    "title": "Products & Services",
     "subtitle": "Comprehensive payment solutions to grow your business globally",
+    "learnmore": "Learn More About Our Products",
     "statistics": {
       "title": "Smart Business Analytics",
       "description": "Through clear transaction statistics and intuitive business trends, you can better grasp marketing direction, easily control daily operations, and naturally lead business success."
@@ -90,7 +91,7 @@
       "description": "Open a local currency account online, without complicated approval process, and it only takes 1 minute."
     },
     "statistics": {
-      "title": "Integration of Transaction Statistics", 
+      "title": "Integration of Transaction Statistics",
       "description": "Automatically record and integrate transaction records and payment trend analysis to help merchants better grasp business data."
     },
     "currency": {
@@ -109,7 +110,7 @@
     "description": "Building the most stable payment system in the world and leading the future with international payments.",
     "about": "About Us",
     "products": "Products & Services",
-    "api": "API Documentation", 
+    "api": "API Documentation",
     "copyright": "© 2025 TaroPay. All rights reserved.",
     "links": {
       "ourServices": "Our Services",

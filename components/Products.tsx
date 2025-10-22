@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
-import { useRef, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
-import { 
-  ChartBarIcon, 
-  GlobeAltIcon, 
+import { useRef, useEffect } from "react";
+import { useTranslations } from "next-intl";
+import {
+  ChartBarIcon,
+  GlobeAltIcon,
   CreditCardIcon,
   ShieldCheckIcon,
   DocumentTextIcon,
-  CodeBracketIcon
-} from '@heroicons/react/24/outline';
+  CodeBracketIcon,
+} from "@heroicons/react/24/outline";
 
 export default function Products() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
-  const t = useTranslations('Products');
+  const t = useTranslations("Products");
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -24,16 +24,16 @@ export default function Products() {
     const timer = setTimeout(() => {
       // 触发标题动画
       if (titleRef.current) {
-        titleRef.current.classList.remove('opacity-0', 'translate-y-5');
-        titleRef.current.classList.add('opacity-100', 'translate-y-0');
+        titleRef.current.classList.remove("opacity-0", "translate-y-5");
+        titleRef.current.classList.add("opacity-100", "translate-y-0");
       }
 
       // 触发卡片动画
       if (cardsRef.current) {
-        const cards = cardsRef.current.querySelectorAll('.product-card');
+        const cards = cardsRef.current.querySelectorAll(".product-card");
         cards.forEach((card) => {
-          (card as HTMLElement).classList.remove('opacity-0', 'translate-y-4');
-          (card as HTMLElement).classList.add('opacity-100', 'translate-y-0');
+          (card as HTMLElement).classList.remove("opacity-0", "translate-y-4");
+          (card as HTMLElement).classList.add("opacity-100", "translate-y-0");
         });
       }
     }, 100); // 短暂延迟确保DOM准备好
@@ -45,67 +45,71 @@ export default function Products() {
 
   const products = [
     {
-      id: 'statistics',
+      id: "statistics",
       icon: ChartBarIcon,
-      title: t('statistics.title'),
-      description: t('statistics.description'),
-      gradient: 'from-blue-500 to-cyan-500'
+      title: t("statistics.title"),
+      description: t("statistics.description"),
+      gradient: "from-blue-500 to-cyan-500",
     },
     {
-      id: 'global',
+      id: "global",
       icon: GlobeAltIcon,
-      title: t('global.title'),
-      description: t('global.description'),
-      gradient: 'from-purple-500 to-pink-500'
+      title: t("global.title"),
+      description: t("global.description"),
+      gradient: "from-purple-500 to-pink-500",
     },
     {
-      id: 'gateway',
+      id: "gateway",
       icon: CreditCardIcon,
-      title: t('gateway.title'),
-      description: t('gateway.description'),
-      gradient: 'from-green-500 to-emerald-500'
+      title: t("gateway.title"),
+      description: t("gateway.description"),
+      gradient: "from-green-500 to-emerald-500",
     },
     {
-      id: 'riskcontrol',
+      id: "riskcontrol",
       icon: ShieldCheckIcon,
-      title: t('riskcontrol.title'),
-      description: t('riskcontrol.description'),
-      gradient: 'from-red-500 to-orange-500'
+      title: t("riskcontrol.title"),
+      description: t("riskcontrol.description"),
+      gradient: "from-red-500 to-orange-500",
     },
     {
-      id: 'accounting',
+      id: "accounting",
       icon: DocumentTextIcon,
-      title: t('accounting.title'),
-      description: t('accounting.description'),
-      gradient: 'from-indigo-500 to-blue-500'
+      title: t("accounting.title"),
+      description: t("accounting.description"),
+      gradient: "from-indigo-500 to-blue-500",
     },
     {
-      id: 'multilang',
+      id: "multilang",
       icon: CodeBracketIcon,
-      title: t('multilang.title'),
-      description: t('multilang.description'),
-      gradient: 'from-yellow-500 to-amber-500'
-    }
+      title: t("multilang.title"),
+      description: t("multilang.description"),
+      gradient: "from-yellow-500 to-amber-500",
+    },
   ];
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="products" 
+      id="products"
       className="py-24 sm:py-32 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 transform-gpu"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div ref={titleRef} className="mx-auto max-w-2xl text-center opacity-0 translate-y-5 transition-all duration-500 ease-out">
+        <div
+          ref={titleRef}
+          className="mx-auto max-w-2xl text-center opacity-0 translate-y-5 transition-all duration-500 ease-out"
+        >
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            {t('title')}
+            {t("title")}
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-300">
-            {t('subtitle')}
+            {t("subtitle")}
           </p>
         </div>
-        
+
         <div ref={cardsRef} className="mx-auto mt-16 max-w-7xl">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">{products.map((product, index) => (
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {products.map((product, index) => (
               <div
                 key={index}
                 id={product.id}
@@ -113,13 +117,17 @@ export default function Products() {
                 style={{ transitionDelay: `${index * 30}ms` }}
               >
                 {/* Background gradient overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-                
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                />
+
                 {/* Icon */}
-                <div className={`relative inline-flex p-3 rounded-lg bg-gradient-to-r ${product.gradient} shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
+                <div
+                  className={`relative inline-flex p-3 rounded-lg bg-gradient-to-r ${product.gradient} shadow-lg group-hover:shadow-xl transition-shadow duration-300`}
+                >
                   <product.icon className="h-6 w-6 text-white" />
                 </div>
-                
+
                 {/* Content */}
                 <div className="relative mt-6">
                   <h3 className="text-xl font-semibold text-white group-hover:text-blue-300 transition-colors duration-300">
@@ -141,9 +149,19 @@ export default function Products() {
         {/* Call to action */}
         <div className="mt-20 text-center">
           <div className="inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-            <span className="text-lg font-semibold">了解更多产品详情</span>
-            <svg className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <span className="text-lg font-semibold">{t("learnmore")}</span>
+            <svg
+              className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
             </svg>
           </div>
         </div>
