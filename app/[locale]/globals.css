@@ -36,7 +36,8 @@ body {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -76,58 +77,64 @@ html {
 
 /* 优化的浮动动画 - 使用CSS而非JavaScript以提高性能 */
 @keyframes float-1 {
-  0%, 100% { 
-    transform: translateY(0px) rotate(0deg); 
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
   }
-  50% { 
-    transform: translateY(-8px) rotate(1deg); 
+  50% {
+    transform: translateY(-8px) rotate(1deg);
   }
 }
 
 @keyframes float-2 {
-  0%, 100% { 
-    transform: translateY(0px) rotate(0deg); 
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
   }
-  50% { 
-    transform: translateY(-12px) rotate(-1deg); 
+  50% {
+    transform: translateY(-12px) rotate(-1deg);
   }
 }
 
 @keyframes float-3 {
-  0%, 100% { 
-    transform: translateY(0px) rotate(0deg); 
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
   }
-  50% { 
-    transform: translateY(-6px) rotate(0.5deg); 
+  50% {
+    transform: translateY(-6px) rotate(0.5deg);
   }
 }
 
 /* 减少动画强度以避免卡顿 */
 @media (prefers-reduced-motion: reduce) {
   @keyframes float-1 {
-    0%, 100% { 
-      transform: translateY(0px) rotate(0deg); 
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
     }
-    50% { 
-      transform: translateY(-2px) rotate(0deg); 
+    50% {
+      transform: translateY(-2px) rotate(0deg);
     }
   }
-  
+
   @keyframes float-2 {
-    0%, 100% { 
-      transform: translateY(0px) rotate(0deg); 
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
     }
-    50% { 
-      transform: translateY(-2px) rotate(0deg); 
+    50% {
+      transform: translateY(-2px) rotate(0deg);
     }
   }
-  
+
   @keyframes float-3 {
-    0%, 100% { 
-      transform: translateY(0px) rotate(0deg); 
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
     }
-    50% { 
-      transform: translateY(-2px) rotate(0deg); 
+    50% {
+      transform: translateY(-2px) rotate(0deg);
     }
   }
 }
@@ -141,5 +148,56 @@ html {
 
 /* 优化的transition */
 .transition-optimized {
-  transition: transform 0.2s ease-out, opacity 0.2s ease-out, box-shadow 0.2s ease-out;
+  transition:
+    transform 0.2s ease-out,
+    opacity 0.2s ease-out,
+    box-shadow 0.2s ease-out;
+}
+
+/* 移动端菜单动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
