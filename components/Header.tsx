@@ -5,7 +5,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Link } from "@/i18n/routing";
+import { Link, usePathname } from "@/i18n/routing";
 import LocaleSwitcher from "./LocaleSwitcher";
 
 // Register GSAP plugins
@@ -26,6 +26,7 @@ export default function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLSpanElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
   const t = useTranslations("Nav");
 
   // Handle mobile menu close with animation
@@ -68,6 +69,14 @@ export default function Header() {
     { name: t("apidoc"), href: "https://doc.taropay.com/", external: true },
   ];
 
+  // 检查是否为当前页面
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(href);
+  };
+
   return (
     <header
       ref={headerRef}
@@ -106,11 +115,23 @@ export default function Header() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-semibold leading-6 text-gray-300 hover:text-white transition-all duration-300 hover:scale-105 relative group"
+                className="text-sm font-semibold leading-6 text-gray-300 hover:text-white transition-all duration-300 hover:scale-105 relative group px-4 py-2"
               >
-                {item.name}
+                {/* 纯光照效果 - hover状态 */}
+                <div className="absolute inset-0 -z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  {/* 主光源 - 从上方照射 */}
+                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-16 bg-blue-400 rounded-full blur-xl opacity-30"></div>
+                  {/* 辅助光源 - 从后方照射 */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-10 bg-purple-300 rounded-full blur-2xl opacity-20"></div>
+                  {/* 近距离光晕 */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-6 bg-white rounded-full blur-lg opacity-10"></div>
+                </div>
+
+                <span className="relative z-10 drop-shadow-sm group-hover:drop-shadow-lg group-hover:text-shadow-lg transition-all duration-300">
+                  {item.name}
+                </span>
                 <svg
-                  className="inline-block ml-1 h-3 w-3"
+                  className="inline-block ml-1 h-3 w-3 relative z-10 drop-shadow-sm group-hover:drop-shadow-lg"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -122,16 +143,48 @@ export default function Header() {
                     d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                   />
                 </svg>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
               </a>
             ) : (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-semibold leading-6 text-gray-300 hover:text-white transition-all duration-300 hover:scale-105 relative group"
+                className={`text-sm font-semibold leading-6 transition-all duration-300 hover:scale-105 relative group px-4 py-2 ${
+                  isActive(item.href)
+                    ? "text-white drop-shadow-lg"
+                    : "text-gray-300 hover:text-white"
+                }`}
               >
-                {item.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+                {/* 纯光照效果 - hover状态 */}
+                <div className="absolute inset-0 -z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  {/* 主光源 - 从上方照射 */}
+                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-16 bg-blue-400 rounded-full blur-xl opacity-30"></div>
+                  {/* 辅助光源 - 从后方照射 */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-10 bg-purple-300 rounded-full blur-2xl opacity-20"></div>
+                  {/* 近距离光晕 */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-6 bg-white rounded-full blur-lg opacity-10"></div>
+                </div>
+
+                {/* 选中状态的纯光照效果 */}
+                {isActive(item.href) && (
+                  <div className="absolute inset-0 -z-20">
+                    {/* 持续的主光源 */}
+                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-16 bg-blue-400 rounded-full blur-xl opacity-25"></div>
+                    {/* 持续的辅助光源 */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-10 bg-purple-300 rounded-full blur-2xl opacity-15"></div>
+                    {/* 持续的近距离光晕 */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-6 bg-white rounded-full blur-lg opacity-8"></div>
+                  </div>
+                )}
+
+                <span
+                  className={`relative z-10 transition-all duration-300 ${
+                    isActive(item.href)
+                      ? "drop-shadow-lg"
+                      : "drop-shadow-sm group-hover:drop-shadow-lg"
+                  }`}
+                >
+                  {item.name}
+                </span>
               </Link>
             ),
           )}
@@ -202,7 +255,7 @@ export default function Header() {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-800 hover:text-white transition-all duration-200"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:text-white transition-all duration-200 relative group"
                         style={{
                           animation: isClosing
                             ? "none"
@@ -210,9 +263,19 @@ export default function Header() {
                         }}
                         onClick={handleMobileMenuClose}
                       >
-                        {item.name}
+                        {/* 移动端纯光照效果 */}
+                        <div className="absolute inset-0 -z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          {/* 主光源 - 从左上方照射 */}
+                          <div className="absolute -top-4 -left-2 w-14 h-14 bg-blue-400 rounded-full blur-xl opacity-25"></div>
+                          {/* 辅助光源 */}
+                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-8 bg-purple-300 rounded-full blur-xl opacity-15"></div>
+                        </div>
+
+                        <span className="relative z-10 drop-shadow-sm group-hover:drop-shadow-lg">
+                          {item.name}
+                        </span>
                         <svg
-                          className="inline-block ml-1 h-3 w-3"
+                          className="inline-block ml-1 h-3 w-3 relative z-10 drop-shadow-sm group-hover:drop-shadow-lg"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -229,7 +292,11 @@ export default function Header() {
                       <Link
                         key={item.name}
                         href={item.href}
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-800 hover:text-white transition-all duration-200"
+                        className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 transition-all duration-200 relative group ${
+                          isActive(item.href)
+                            ? "text-white drop-shadow-lg"
+                            : "text-gray-300 hover:text-white"
+                        }`}
                         style={{
                           animation: isClosing
                             ? "none"
@@ -237,7 +304,33 @@ export default function Header() {
                         }}
                         onClick={handleMobileMenuClose}
                       >
-                        {item.name}
+                        {/* 移动端纯光照效果 - hover状态 */}
+                        <div className="absolute inset-0 -z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          {/* 主光源 - 从左上方照射 */}
+                          <div className="absolute -top-4 -left-2 w-14 h-14 bg-blue-400 rounded-full blur-xl opacity-25"></div>
+                          {/* 辅助光源 */}
+                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-8 bg-purple-300 rounded-full blur-xl opacity-15"></div>
+                        </div>
+
+                        {/* 选中状态的纯光照效果 */}
+                        {isActive(item.href) && (
+                          <div className="absolute inset-0 -z-20">
+                            {/* 持续的主光源 */}
+                            <div className="absolute -top-4 -left-2 w-14 h-14 bg-blue-400 rounded-full blur-xl opacity-20"></div>
+                            {/* 持续的辅助光源 */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-8 bg-purple-300 rounded-full blur-xl opacity-12"></div>
+                          </div>
+                        )}
+
+                        <span
+                          className={`relative z-10 transition-all duration-300 ${
+                            isActive(item.href)
+                              ? "drop-shadow-lg"
+                              : "drop-shadow-sm group-hover:drop-shadow-lg"
+                          }`}
+                        >
+                          {item.name}
+                        </span>
                       </Link>
                     ),
                   )}
