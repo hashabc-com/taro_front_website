@@ -1,8 +1,6 @@
-"use client";
-
 import { useState } from "react";
 import { useRouter, usePathname } from "@/i18n/routing";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { FlagIcon, type FlagCode } from "./ui/flag-icons";
 
@@ -16,6 +14,7 @@ export default function LocaleSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
+  const t = useTranslations("Nav");
 
   const currentLocaleData =
     locales.find((loc) => loc.code === locale) || locales[0];
@@ -29,6 +28,7 @@ export default function LocaleSwitcher() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
+        title={t("titles.languageSwitcher")}
         className="flex items-center gap-2 rounded-md border border-gray-600 bg-gray-800 px-3 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"
       >
         <FlagIcon code={currentLocaleData.flag} className="w-5 h-3" />
@@ -50,6 +50,7 @@ export default function LocaleSwitcher() {
                 <button
                   key={localeItem.code}
                   onClick={() => handleLocaleChange(localeItem.code)}
+                  title={`${t("titles.switchTo")}${localeItem.name} / Switch to ${localeItem.name}`}
                   className={`flex w-full items-center gap-3 px-4 py-2 text-sm hover:bg-gray-700 ${
                     localeItem.code === locale
                       ? "bg-gray-700 text-white"

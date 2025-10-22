@@ -6,7 +6,16 @@
     "contact": "Contact",
     "apidoc": "API Docs",
     "signin": "Sign in",
-    "getstarted": "Get Started"
+    "getstarted": "Get Started",
+    "titles": {
+      "home": "TaroPay Home - Global Payment Solutions",
+      "logo": "TaroPay - Global Payment Solutions Homepage",
+      "features": "TaroPay Products - Payment Products & Solutions",
+      "about": "TaroPay About Us - Company Profile & History",
+      "apidoc": "TaroPay API Documentation - Developer Integration Guide",
+      "languageSwitcher": "Switch Language / 切换语言",
+      "switchTo": "Switch to"
+    }
   },
   "Hero": {
     "title": "One-Stop Global Payment Solution",
@@ -14,6 +23,10 @@
     "description": "We are committed to building the most stable payment system in the world and leading the future with international payments.",
     "getstarted": "Get Started",
     "learnmore": "Learn More",
+    "titles": {
+      "getstarted": "View TaroPay Products & Services",
+      "learnmore": "Learn About TaroPay Company & History"
+    },
     "stats": {
       "countries": "Countries Covered",
       "uptime": "Uptime Guarantee",
@@ -58,6 +71,9 @@
     "title": "Products & Services",
     "subtitle": "Comprehensive payment solutions to grow your business globally",
     "learnmore": "Learn More About Our Products",
+    "titles": {
+      "learnmore": "Learn More About TaroPay Products"
+    },
     "statistics": {
       "title": "Smart Business Analytics",
       "description": "Through clear transaction statistics and intuitive business trends, you can better grasp marketing direction, easily control daily operations, and naturally lead business success."
@@ -86,6 +102,10 @@
   "Solutions": {
     "title": "One-Stop Global Payment Solution",
     "subtitle": "Everything you need to accept payments and grow your business globally",
+    "learnmore": "Learn more",
+    "titles": {
+      "learnmore": "Learn More About Our Solutions"
+    },
     "account": {
       "title": "Free Opening of Payment Account",
       "description": "Open a local currency account online, without complicated approval process, and it only takes 1 minute."
@@ -98,12 +118,15 @@
       "title": "Multi-Currency Support",
       "description": "Support multiple currencies and payment methods to meet the needs of merchants in different regions and industries."
     },
-    "learnmore": "Learn more",
     "cta": {
       "title": "Ready to transform your payment system?",
       "description": "Join thousands of businesses that trust TaroPay for their global payment needs.",
       "getstarted": "Get Started Free",
-      "demo": "Schedule Demo"
+      "demo": "Schedule Demo",
+      "titles": {
+        "getstarted": "Start Using TaroPay Payment Services For Free",
+        "demo": "Watch TaroPay Product Demo"
+      }
     }
   },
   "Footer": {
@@ -112,6 +135,16 @@
     "products": "Products & Services",
     "api": "API Documentation",
     "copyright": "© 2025 TaroPay. All rights reserved.",
+    "titles": {
+      "ourServices": "TaroPay About Us - Our Services",
+      "ourAdvantages": "TaroPay About Us - Our Advantages",
+      "statistics": "TaroPay Products - Smart Business Analytics",
+      "globalSolution": "TaroPay Products - Global Payment Solutions",
+      "gateway": "TaroPay Products - Convenient Payment Gateway",
+      "riskControl": "TaroPay Products - Flexible Risk Control",
+      "accounting": "TaroPay Products - Simplified Accounting",
+      "apiDocs": "TaroPay API Documentation - Developer Integration Guide"
+    },
     "links": {
       "ourServices": "Our Services",
       "ourAdvantages": "Our Advantages",

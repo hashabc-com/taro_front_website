@@ -6,7 +6,16 @@
     "contact": "联系我们",
     "apidoc": "API文档",
     "signin": "登录",
-    "getstarted": "立即开始"
+    "getstarted": "立即开始",
+    "titles": {
+      "home": "TaroPay首页 - 全球支付解决方案",
+      "logo": "TaroPay - 全球支付解决方案首页",
+      "features": "TaroPay产品服务 - 支付产品与解决方案",
+      "about": "TaroPay关于我们 - 公司介绍与发展历程",
+      "apidoc": "TaroPay API文档 - 开发者接入指南",
+      "languageSwitcher": "切换语言 / Switch Language",
+      "switchTo": "切换到"
+    }
   },
   "Hero": {
     "title": "一站式全球支付解决方案",
@@ -14,6 +23,10 @@
     "description": "致力于打造全球最稳定的支付系统，国际支付引领未来",
     "getstarted": "立即开始",
     "learnmore": "了解更多",
+    "titles": {
+      "getstarted": "查看TaroPay产品服务详情",
+      "learnmore": "了解TaroPay公司详情和发展历程"
+    },
     "stats": {
       "countries": "覆盖国家",
       "uptime": "在线时间保证",
@@ -58,6 +71,9 @@
     "title": "产品服务",
     "subtitle": "全方位的支付解决方案，让您的业务遍布全球",
     "learnmore": "了解更多产品详情",
+    "titles": {
+      "learnmore": "了解更多TaroPay产品详情"
+    },
     "statistics": {
       "title": "智能的经营统计分析",
       "description": "通过清晰的订单交易统计和直观的经营趋势，您可以更好地掌握营销方向，轻松控制每日经营，自然而然地引领业务成功。"
@@ -86,6 +102,10 @@
   "Solutions": {
     "title": "一站式全球支付解决方案",
     "subtitle": "您接受付款和在全球范围内发展业务所需的一切",
+    "learnmore": "了解更多",
+    "titles": {
+      "learnmore": "了解更多解决方案详情"
+    },
     "account": {
       "title": "免费开通支付账户",
       "description": "在线开通本币账户，无需复杂的审批流程，只需 1 分钟。"
@@ -98,12 +118,15 @@
       "title": "多币种支持",
       "description": "支持多种货币和支付方式，满足不同地区和行业商户的需求。"
     },
-    "learnmore": "了解更多",
     "cta": {
       "title": "准备好改变您的支付系统了吗？",
       "description": "加入信任 TaroPay 满足全球支付需求的数千家企业。",
       "getstarted": "免费开始",
-      "demo": "预约演示"
+      "demo": "预约演示",
+      "titles": {
+        "getstarted": "免费开始使用TaroPay支付服务",
+        "demo": "观看TaroPay产品演示"
+      }
     }
   },
   "Footer": {
@@ -112,6 +135,16 @@
     "products": "产品服务",
     "api": "API文档",
     "copyright": "© 2025 TaroPay. 保留所有权利。",
+    "titles": {
+      "ourServices": "TaroPay关于我们 - 我们的服务",
+      "ourAdvantages": "TaroPay关于我们 - 我们的优势",
+      "statistics": "TaroPay产品服务 - 智能的经营统计分析",
+      "globalSolution": "TaroPay产品服务 - 全球支付解决方案",
+      "gateway": "TaroPay产品服务 - 便捷接入支付网关",
+      "riskControl": "TaroPay产品服务 - 灵活动态的风控模块",
+      "accounting": "TaroPay产品服务 - 记账更简易",
+      "apiDocs": "TaroPay API文档 - 开发者接入指南"
+    },
     "links": {
       "ourServices": "我们的服务",
       "ourAdvantages": "我们的优势",

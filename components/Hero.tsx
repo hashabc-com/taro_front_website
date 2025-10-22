@@ -199,6 +199,7 @@ export default function Hero() {
           >
             <Link
               href="/products"
+              title={t("titles.getstarted")}
               className="group rounded-md bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all duration-200 ease-out flex items-center gap-2 hover:scale-[1.02] hover:shadow-lg hover:shadow-blue-500/20"
             >
               {t("getstarted")}
@@ -206,6 +207,7 @@ export default function Hero() {
             </Link>
             <Link
               href="/about"
+              title={t("titles.learnmore")}
               className="group text-sm font-semibold leading-6 text-gray-300 hover:text-white transition-all duration-200 ease-out flex items-center gap-2 hover:scale-[1.02]"
             >
               <div className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-600 group-hover:border-white transition-all duration-200 ease-out group-hover:bg-white/5 group-hover:scale-105">

@@ -77,6 +77,27 @@ export default function Header() {
     return pathname.startsWith(href);
   };
 
+  // 根据导航项生成title属性
+  const getLinkTitle = (item: NavigationItem) => {
+    if (item.external) {
+      if (item.href.includes("doc.taropay.com")) {
+        return t("titles.apidoc");
+      }
+    }
+
+    // 内部链接的title
+    switch (item.href) {
+      case "/":
+        return t("titles.home");
+      case "/products":
+        return t("titles.features");
+      case "/about":
+        return t("titles.about");
+      default:
+        return `TaroPay - ${item.name}`;
+    }
+  };
+
   return (
     <header
       ref={headerRef}
@@ -88,7 +109,7 @@ export default function Header() {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5">
+          <Link href="/" className="-m-1.5 p-1.5" title={t("titles.logo")}>
             <span
               ref={logoRef}
               className="text-2xl font-bold text-white hover:text-blue-400 transition-colors duration-300"
@@ -115,6 +136,7 @@ export default function Header() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                title={getLinkTitle(item)}
                 className="text-sm font-semibold leading-6 text-gray-300 hover:text-white transition-all duration-300 hover:scale-105 relative group px-4 py-2"
               >
                 {/* 纯光照效果 - hover状态 */}
@@ -148,6 +170,7 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
+                title={getLinkTitle(item)}
                 className={`text-sm font-semibold leading-6 transition-all duration-300 hover:scale-105 relative group px-4 py-2 ${
                   isActive(item.href)
                     ? "text-white drop-shadow-lg"
@@ -233,7 +256,7 @@ export default function Header() {
             }}
           >
             <div className="flex items-center justify-between">
-              <Link href="/" className="-m-1.5 p-1.5">
+              <Link href="/" className="-m-1.5 p-1.5" title={t("titles.logo")}>
                 <span className="text-2xl font-bold text-white">TaroPay</span>
               </Link>
               <button
@@ -255,6 +278,7 @@ export default function Header() {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
+                        title={getLinkTitle(item)}
                         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:text-white transition-all duration-200 relative group"
                         style={{
                           animation: isClosing
@@ -292,6 +316,7 @@ export default function Header() {
                       <Link
                         key={item.name}
                         href={item.href}
+                        title={getLinkTitle(item)}
                         className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 transition-all duration-200 relative group ${
                           isActive(item.href)
                             ? "text-white drop-shadow-lg"

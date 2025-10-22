@@ -1,7 +1,7 @@
 "use client";
-
 import { useRef, useEffect } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import {
   ChartBarIcon,
   GlobeAltIcon,
@@ -148,7 +148,11 @@ export default function Products() {
 
         {/* Call to action */}
         <div className="mt-20 text-center">
-          <div className="inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <Link
+            href="/about"
+            title={t("titles.learnmore")}
+            className="inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group"
+          >
             <span className="text-lg font-semibold">{t("learnmore")}</span>
             <svg
               className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
@@ -163,7 +167,7 @@ export default function Products() {
                 d="M9 5l7 7-7 7"
               />
             </svg>
-          </div>
+          </Link>
         </div>
       </div>
     </section>

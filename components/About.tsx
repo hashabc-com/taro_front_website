@@ -1,5 +1,4 @@
 "use client";
-
 import { useRef, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import {
@@ -237,17 +236,17 @@ export default function About() {
             <p className="text-lg leading-8 text-gray-300 mb-8">
               {t("contact.description")}
             </p>
-            <div className="inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer">
-              <span
-                className="text-lg font-semibold"
-                onClick={() =>
-                  window.open(
-                    "https://t.me/Young168l",
-                    "_blank",
-                    "noopener,noreferrer",
-                  )
-                }
-              >
+            <div
+              onClick={() =>
+                window.open(
+                  "https://t.me/Young168l",
+                  "_blank",
+                  "noopener,noreferrer",
+                )
+              }
+              className="inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
+            >
+              <span className="text-lg font-semibold">
                 {t("contact.form.submit")}
               </span>
               <svg

@@ -1,8 +1,12 @@
-"use client";
-
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import AnimatedSection from "./AnimatedSection";
+
+interface FooterLinkItem {
+  name: string;
+  href: string;
+  external?: boolean;
+}
 
 export default function Footer() {
   const t = useTranslations("Footer");
@@ -26,6 +30,31 @@ export default function Footer() {
         external: true,
       },
     ],
+  };
+
+  // 根据链接生成title属性
+  const getLinkTitle = (item: FooterLinkItem) => {
+    if (item.external) {
+      if (item.href.includes("doc.taropay.com")) {
+        return t("titles.apiDocs");
+      }
+    }
+
+    // 内部链接的title
+    if (item.href.includes("/about")) {
+      const linkKey = item.href.includes("#services")
+        ? "ourServices"
+        : "ourAdvantages";
+      return t(`titles.${linkKey}`);
+    } else if (item.href.includes("/products")) {
+      if (item.href.includes("#statistics")) return t("titles.statistics");
+      if (item.href.includes("#global")) return t("titles.globalSolution");
+      if (item.href.includes("#gateway")) return t("titles.gateway");
+      if (item.href.includes("#riskcontrol")) return t("titles.riskControl");
+      if (item.href.includes("#accounting")) return t("titles.accounting");
+    }
+
+    return `TaroPay - ${item.name}`;
   };
 
   return (
@@ -59,6 +88,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <Link
                         href={item.href}
+                        title={getLinkTitle(item)}
                         className="text-sm leading-6 text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1"
                       >
                         {item.name}
@@ -76,6 +106,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <Link
                         href={item.href}
+                        title={getLinkTitle(item)}
                         className="text-sm leading-6 text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1"
                       >
                         {item.name}
@@ -95,6 +126,7 @@ export default function Footer() {
                         href={item.href}
                         target={item.external ? "_blank" : undefined}
                         rel={item.external ? "noopener noreferrer" : undefined}
+                        title={getLinkTitle(item)}
                         className="text-sm leading-6 text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1"
                       >
                         {item.name}
