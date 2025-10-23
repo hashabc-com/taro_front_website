@@ -66,7 +66,7 @@ export default function Header() {
     { name: t("home"), href: "/" },
     { name: t("features"), href: "/products" },
     { name: t("about"), href: "/about" },
-    { name: t("apidoc"), href: "https://doc.taropay.com/", external: true },
+    { name: t("apidoc"), href: "https://docs.taropay.com/", external: true },
   ];
 
   // 检查是否为当前页面
@@ -80,7 +80,7 @@ export default function Header() {
   // 根据导航项生成title属性
   const getLinkTitle = (item: NavigationItem) => {
     if (item.external) {
-      if (item.href.includes("doc.taropay.com")) {
+      if (item.href.includes("docs.taropay.com")) {
         return t("titles.apidoc");
       }
     }

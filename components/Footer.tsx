@@ -26,7 +26,7 @@ export default function Footer() {
     api: [
       {
         name: t("links.apiDocs"),
-        href: "https://doc.taropay.com/",
+        href: "https://docs.taropay.com/",
         external: true,
       },
     ],
@@ -35,7 +35,7 @@ export default function Footer() {
   // 根据链接生成title属性
   const getLinkTitle = (item: FooterLinkItem) => {
     if (item.external) {
-      if (item.href.includes("doc.taropay.com")) {
+      if (item.href.includes("docs.taropay.com")) {
         return t("titles.apiDocs");
       }
     }

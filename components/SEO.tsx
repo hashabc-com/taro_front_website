@@ -99,8 +99,6 @@ export function generateMetadata({
     // Verification
     verification: {
       google: "wQlAtw6XPChci8lthxw3O66U11YYCoqqR-gb6tO0vXM",
-      // yandex: "your-yandex-verification-code",
-      // yahoo: "your-yahoo-verification-code",
     },
 
     // Category
