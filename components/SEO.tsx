@@ -98,7 +98,7 @@ export function generateMetadata({
 
     // Verification
     verification: {
-      google: "your-google-verification-code",
+      google: "wQlAtw6XPChci8lthxw3O66U11YYCoqqR-gb6tO0vXM",
       // yandex: "your-yandex-verification-code",
       // yahoo: "your-yahoo-verification-code",
     },
