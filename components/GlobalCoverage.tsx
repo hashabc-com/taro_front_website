@@ -1,102 +1,114 @@
-'use client';
+"use client";
 
-import { useTranslations } from 'next-intl';
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import AnimatedSection from './AnimatedSection';
-import { FlagIcon, type FlagCode } from './ui/flag-icons';
+import { useTranslations } from "next-intl";
+import { useRef, useEffect } from "react";
+import AnimatedSection from "./AnimatedSection";
+import Image from "next/image";
 
-// Register GSAP plugins
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
+// 导入国家图片
+import bangladeshImg from "@/app/assets/bangladesh.png";
+import brazilImg from "@/app/assets/brazil.png";
+import indiaImg from "@/app/assets/india.png";
+import indonesiaImg from "@/app/assets/indonesia.png";
+import kenyaImg from "@/app/assets/kenya.png";
+import koreaImg from "@/app/assets/korea.png";
+import mexicoImg from "@/app/assets/mexico.png";
+import pakistanImg from "@/app/assets/pakistan.png";
+import thailandImg from "@/app/assets/thailand.png";
+import vietnamImg from "@/app/assets/vietnam.png";
 
 export default function GlobalCoverage() {
-  const t = useTranslations('GlobalCoverage');
-  const globeRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    // 优化地球旋转效果，使其更平滑
-    if (globeRef.current) {
-      gsap.to(globeRef.current, {
-        rotation: 360,
-        duration: 30, // 增加到30秒，更慢更自然
-        repeat: -1,
-        ease: "none"
-      });
-    }
-  }, []);
-  
-  const countries = [
-    { code: 'KE' as FlagCode, name: 'Kenya' },
-    { code: 'BD' as FlagCode, name: 'Bangladesh' },
-    { code: 'ID' as FlagCode, name: 'Indonesia' },
-    { code: 'PH' as FlagCode, name: 'Philippines' },
-    { code: 'IN' as FlagCode, name: 'India' },
-    { code: 'TH' as FlagCode, name: 'Thailand' },
-    { code: 'VN' as FlagCode, name: 'Vietnam' },
-    { code: 'MY' as FlagCode, name: 'Malaysia' },
-    { code: 'SG' as FlagCode, name: 'Singapore' },
-    { code: 'AE' as FlagCode, name: 'UAE' },
+  const t = useTranslations("GlobalCoverage");
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const isPausedRef = useRef(false);
+
+  const countryImages = [
+    { name: "Bangladesh", image: bangladeshImg },
+    { name: "Brazil", image: brazilImg },
+    { name: "India", image: indiaImg },
+    { name: "Indonesia", image: indonesiaImg },
+    { name: "Kenya", image: kenyaImg },
+    { name: "South Korea", image: koreaImg },
+    { name: "Mexico", image: mexicoImg },
+    { name: "Pakistan", image: pakistanImg },
+    { name: "Thailand", image: thailandImg },
+    { name: "Vietnam", image: vietnamImg },
   ];
 
+  // 复制一份用于无缝循环
+  const allImages = [...countryImages, ...countryImages];
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    let scrollPosition = 0;
+    const scrollSpeed = 1.5; // 滚动速度，数值越大越快
+
+    const scroll = () => {
+      // 只有在未暂停时才滚动
+      if (!isPausedRef.current) {
+        scrollPosition += scrollSpeed;
+
+        // 当滚动到一半时重置（因为我们复制了数组）
+        if (scrollPosition >= container.scrollWidth / 2) {
+          scrollPosition = 0;
+        }
+
+        container.scrollLeft = scrollPosition;
+      }
+      requestAnimationFrame(scroll);
+    };
+
+    const animationId = requestAnimationFrame(scroll);
+
+    return () => cancelAnimationFrame(animationId);
+  }, []);
+
+  const handleMouseEnter = () => {
+    isPausedRef.current = true;
+  };
+
+  const handleMouseLeave = () => {
+    isPausedRef.current = false;
+  };
+
   return (
-    <AnimatedSection 
-      animationType="fadeUp" 
-      className="py-24 bg-gray-800"
-    >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <AnimatedSection animationType="fadeUp" className="py-24 bg-gray-800">
+      {/* 标题区域 - 保持在容器内 */}
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-16">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="animate-item">
-            <div 
-              ref={globeRef} 
-              className="text-6xl mb-6 inline-block"
-              style={{
-                animation: 'float-2 4s ease-in-out infinite'
-              }}
-            >
-              🌍
-            </div>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">
-              {t('title')}
-            </h2>
-            <p className="text-lg leading-8 text-gray-300">
-              {t('description')}
-            </p>
-          </div>
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-4">
+            {t("title")}
+          </h2>
+          <p className="text-lg leading-8 text-gray-300">{t("description")}</p>
         </div>
-        
-        <div className="mx-auto mt-16 grid max-w-5xl grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5">
-          {countries.map((country, index) => (
-            <div 
-              key={index}
-              className="animate-item group relative overflow-hidden rounded-lg bg-gray-700/50 p-6 text-center hover:bg-gray-700/70 transition-all duration-200 ease-out border border-gray-600 hover:border-blue-500/50 cursor-pointer hover:scale-[1.02] hover:shadow-lg hover:shadow-blue-500/10"
-              style={{
-                // 使用CSS动画替代GSAP浮动，性能更好
-                animation: `float-${(index % 3) + 1} ${3 + (index % 2)}s ease-in-out infinite`,
-                animationDelay: `${index * 0.1}s`
-              }}
+      </div>
+
+      {/* 自动滚动容器 - 全宽 */}
+      <div className="relative overflow-hidden w-full">
+        <div ref={scrollContainerRef} className="flex gap-8 overflow-x-hidden">
+          {allImages.map((country, index) => (
+            <div
+              key={`${country.name}-${index}`}
+              className="flex-none cursor-pointer"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
-              <div className="mb-3 group-hover:scale-110 transition-transform duration-200 ease-out flex justify-center items-center">
-                <FlagIcon code={country.code} className="w-16 h-12" />
-              </div>
-              <div className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors duration-200 ease-out">
-                {country.name}
-              </div>
-              
-              {/* 简化的渐变效果 */}
-              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-out"></div>
+              <Image
+                src={country.image}
+                alt={country.name}
+                className="w-[500px] h-auto"
+              />
             </div>
           ))}
         </div>
-        
-        <div className="mt-12 text-center">
-          <div className="animate-item">
-            <p className="text-base text-gray-400">
-              {t('more')}
-            </p>
-          </div>
+      </div>
+
+      {/* 底部文字 - 保持在容器内 */}
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-12">
+        <div className="text-center">
+          <p className="text-base text-gray-400">{t("more")}</p>
         </div>
       </div>
     </AnimatedSection>

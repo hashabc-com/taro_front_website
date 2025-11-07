@@ -9,10 +9,12 @@ import {
   BoltIcon,
   ChatBubbleLeftRightIcon,
 } from "@heroicons/react/24/outline";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "@/i18n/routing";
+import Image from "next/image";
+import AdminSvg from "@/app/assets/admin.svg";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -27,17 +29,89 @@ export default function Hero() {
   const buttonsRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const gradientRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  const [titleText, setTitleText] = useState("");
+  const [subtitleText, setSubtitleText] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
+  const [isTyping, setIsTyping] = useState(true);
+
+  const fullTitle = t("title");
+  const fullSubtitle = `${t("subtitle")}. ${t("description")}.`;
 
   useEffect(() => {
-    // 确保动画立即开始，但给DOM一点时间来准备
-    const startAnimation = () => {
-      const tl = gsap.timeline({
-        defaults: {
-          ease: "power2.out",
-        },
-      });
+    let titleInterval: NodeJS.Timeout;
+    let subtitleInterval: NodeJS.Timeout;
+    let pauseTimeout: NodeJS.Timeout;
+    let restartTimeout: NodeJS.Timeout;
 
-      // 减慢背景gradient的旋转速度，使其更自然
+    const startTyping = () => {
+      setIsTyping(true);
+      setTitleText("");
+      setSubtitleText("");
+
+      let titleIndex = 0;
+
+      // 标题打字 - 降低速度到 120ms
+      titleInterval = setInterval(() => {
+        if (titleIndex < fullTitle.length) {
+          setTitleText(fullTitle.slice(0, titleIndex + 1));
+          titleIndex++;
+        } else {
+          clearInterval(titleInterval);
+
+          // 标题打完后等待 300ms 开始副标题
+          pauseTimeout = setTimeout(() => {
+            let subtitleIndex = 0;
+
+            // 副标题打字 - 降低速度到 50ms
+            subtitleInterval = setInterval(() => {
+              if (subtitleIndex < fullSubtitle.length) {
+                setSubtitleText(fullSubtitle.slice(0, subtitleIndex + 1));
+                subtitleIndex++;
+              } else {
+                clearInterval(subtitleInterval);
+                setIsTyping(false);
+
+                // 打完后等待 3 秒，然后重新开始
+                restartTimeout = setTimeout(() => {
+                  startTyping();
+                }, 3000);
+              }
+            }, 50);
+          }, 300);
+        }
+      }, 120);
+    };
+
+    // 启动打字机效果
+    startTyping();
+
+    return () => {
+      clearInterval(titleInterval);
+      clearInterval(subtitleInterval);
+      clearTimeout(pauseTimeout);
+      clearTimeout(restartTimeout);
+    };
+  }, [fullTitle, fullSubtitle]);
+
+  useEffect(() => {
+    // 光标闪烁效果 - 只在打字时闪烁
+    if (!isTyping) {
+      setShowCursor(true);
+      return;
+    }
+
+    const cursorInterval = setInterval(() => {
+      setShowCursor((prev) => !prev);
+    }, 500);
+
+    return () => clearInterval(cursorInterval);
+  }, [isTyping]);
+
+  useEffect(() => {
+    // 背景gradient旋转动画
+    const startAnimation = () => {
       if (gradientRef.current) {
         gsap.to(gradientRef.current, {
           rotation: 360,
@@ -47,44 +121,9 @@ export default function Hero() {
         });
       }
 
-      // 优化Hero内容动画，使用更自然的缓动
-      if (titleRef.current) {
-        tl.fromTo(
-          titleRef.current,
-          {
-            y: 60,
-            opacity: 0,
-            scale: 0.95,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 1.0,
-            ease: "power2.out",
-          },
-        );
-      }
-
-      if (subtitleRef.current) {
-        tl.fromTo(
-          subtitleRef.current,
-          {
-            y: 30,
-            opacity: 0,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.7,
-            ease: "power2.out",
-          },
-          "-=0.6",
-        );
-      }
-
+      // 按钮动画
       if (buttonsRef.current) {
-        tl.fromTo(
+        gsap.fromTo(
           buttonsRef.current,
           {
             y: 30,
@@ -95,15 +134,36 @@ export default function Hero() {
             y: 0,
             opacity: 1,
             scale: 1,
-            duration: 0.6,
+            duration: 0.8,
+            delay: 2.5, // 等待打字机效果
             ease: "power2.out",
           },
-          "-=0.7",
         );
       }
 
+      // 图片动画
+      if (imageRef.current) {
+        gsap.fromTo(
+          imageRef.current,
+          {
+            x: 100,
+            opacity: 0,
+            scale: 0.9,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1.2,
+            delay: 1,
+            ease: "power2.out",
+          },
+        );
+      }
+
+      // 统计数据动画
       if (statsRef.current) {
-        tl.fromTo(
+        gsap.fromTo(
           statsRef.current,
           {
             y: 50,
@@ -115,43 +175,13 @@ export default function Hero() {
             opacity: 1,
             scale: 1,
             duration: 0.8,
+            delay: 3,
             ease: "power2.out",
           },
-          "-=0.6",
         );
       }
-
-      // 注释掉视差效果，保持标题和副标题固定
-      // if (heroRef.current) {
-      //   ScrollTrigger.create({
-      //     trigger: heroRef.current,
-      //     start: 'top top',
-      //     end: 'bottom top',
-      //     scrub: 1,
-      //     onUpdate: self => {
-      //       const progress = self.progress;
-      //       if (titleRef.current) {
-      //         gsap.to(titleRef.current, {
-      //           y: progress * 50,
-      //           opacity: 1 - progress * 0.3,
-      //           duration: 0.3,
-      //           ease: 'none',
-      //         });
-      //       }
-      //       if (subtitleRef.current) {
-      //         gsap.to(subtitleRef.current, {
-      //           y: progress * 40,
-      //           opacity: 1 - progress * 0.5,
-      //           duration: 0.3,
-      //           ease: 'none',
-      //         });
-      //       }
-      //     },
-      //   });
-      // }
     };
 
-    // 延迟一点启动动画，确保DOM完全准备好
     const timeoutId = setTimeout(startAnimation, 50);
 
     return () => {
@@ -177,44 +207,84 @@ export default function Hero() {
         />
       </div>
 
-      <div className="mx-auto max-w-7xl pt-32 pb-24 sm:pt-40 sm:pb-32">
-        <div className="text-center">
-          <h1
-            ref={titleRef}
-            className="text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-400 via-purple-400 to-blue-300 bg-clip-text text-transparent sm:text-6xl lg:text-7xl hover:from-blue-300 hover:via-purple-300 hover:to-blue-200 transition-all duration-500 cursor-default opacity-0"
-          >
-            {t("title")}
-          </h1>
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-32 pb-24 sm:pt-40 sm:pb-32">
+        {/* 左右布局 */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* 左侧内容 */}
+          <div className="text-left max-w-4xl">
+            {/* sm:h-40 lg:h-44 */}
+            <div className="h-32 overflow-hidden">
+              <h1
+                ref={titleRef}
+                className="text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-400 via-purple-400 to-blue-300 bg-clip-text text-transparent sm:text-6xl lg:text-6xl"
+              >
+                {titleText}
+                {isTyping &&
+                  titleText.length > 0 &&
+                  titleText.length < fullTitle.length && (
+                    <span className="inline-block w-1 h-[0.8em] bg-blue-400 ml-1 animate-pulse"></span>
+                  )}
+              </h1>
+            </div>
 
-          <p
-            ref={subtitleRef}
-            className="mt-6 text-lg leading-8 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-clip-text text-transparent max-w-3xl mx-auto opacity-0"
-          >
-            {t("subtitle")}. {t("description")}.
-          </p>
+            <div className="h-32 mt-3 overflow-hidden">
+              <p
+                ref={subtitleRef}
+                className="text-lg leading-8 text-gray-300 max-w-2xl"
+              >
+                {subtitleText}
+                {((isTyping &&
+                  titleText.length >= fullTitle.length &&
+                  subtitleText.length > 0) ||
+                  (!isTyping && showCursor)) && (
+                  <span className="inline-block w-0.5 h-[1em] bg-gray-300 ml-0.5 relative top-[0.15em] animate-pulse"></span>
+                )}
+              </p>
+            </div>
 
+            <div
+              ref={buttonsRef}
+              className="mt-10 flex items-center gap-x-6 opacity-0"
+            >
+              <Link
+                href="/products"
+                title={t("titles.getstarted")}
+                className="group rounded-md bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all duration-200 ease-out flex items-center gap-2 hover:scale-[1.02] hover:shadow-lg hover:shadow-blue-500/20"
+              >
+                {t("getstarted")}
+                <ArrowRightIcon className="h-4 w-4 group-hover:translate-x-0.5 transition-transform duration-200 ease-out" />
+              </Link>
+              <Link
+                href="/about"
+                title={t("titles.learnmore")}
+                className="group text-sm font-semibold leading-6 text-gray-300 hover:text-white transition-all duration-200 ease-out flex items-center gap-2 hover:scale-[1.02]"
+              >
+                <div className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-600 group-hover:border-white transition-all duration-200 ease-out group-hover:bg-white/5 group-hover:scale-105">
+                  <PlayIcon className="h-4 w-4 ml-0.5" />
+                </div>
+                {t("learnmore")}
+              </Link>
+            </div>
+          </div>
+
+          {/* 右侧产品图 */}
           <div
-            ref={buttonsRef}
-            className="mt-10 flex items-center justify-center gap-x-6 opacity-0"
+            ref={imageRef}
+            className="relative lg:h-[600px] h-[400px] opacity-0"
           >
-            <Link
-              href="/products"
-              title={t("titles.getstarted")}
-              className="group rounded-md bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all duration-200 ease-out flex items-center gap-2 hover:scale-[1.02] hover:shadow-lg hover:shadow-blue-500/20"
-            >
-              {t("getstarted")}
-              <ArrowRightIcon className="h-4 w-4 group-hover:translate-x-0.5 transition-transform duration-200 ease-out" />
-            </Link>
-            <Link
-              href="/about"
-              title={t("titles.learnmore")}
-              className="group text-sm font-semibold leading-6 text-gray-300 hover:text-white transition-all duration-200 ease-out flex items-center gap-2 hover:scale-[1.02]"
-            >
-              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-600 group-hover:border-white transition-all duration-200 ease-out group-hover:bg-white/5 group-hover:scale-105">
-                <PlayIcon className="h-4 w-4 ml-0.5" />
+            <div className="relative w-full h-full flex items-center justify-center">
+              <div className="relative w-full h-full max-w-[600px]">
+                <Image
+                  src={AdminSvg}
+                  alt="TaroPay Admin Dashboard"
+                  fill
+                  className="object-contain drop-shadow-2xl"
+                  priority
+                />
+                {/* 光晕效果 */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-3xl -z-10"></div>
               </div>
-              {t("learnmore")}
-            </Link>
+            </div>
           </div>
         </div>
 
