@@ -39,6 +39,45 @@
     "description": "TaroPay supports payments in over 200 countries and regions worldwide, providing seamless cross-border payment solutions.",
     "more": "And 190+ more countries and regions..."
   },
+  "GetStarted": {
+    "title": "Get Started with TaroPay Payment Services",
+    "step1": {
+      "title": "Consult Our Team",
+      "description": "Contact us to discuss the best payment solution for your business and receive tailored payment recommendations."
+    },
+    "step2": {
+      "title": "Free Account Opening",
+      "description": "We will help you set up a free test account so you can explore our platform features and experience our payment process."
+    },
+    "step3": {
+      "title": "Production Launch",
+      "description": "Our customer service and online support team will guide you through the account setup process."
+    },
+    "step4": {
+      "title": "Configure and Optimize",
+      "description": "We will provide expert-level dynamic configuration based on your business type, ensuring worry-free payments for you and your customers on TaroPay."
+    }
+  },
+  "OneStop": {
+    "title": "One-Stop Global Payment Solution",
+    "imageAlt": "TaroPay One-Stop Payment Solution",
+    "freeAccount": {
+      "title": "Free Payment Account Opening",
+      "description": "Open a local currency account online without complex approval processes, taking only 1 minute."
+    },
+    "statistics": {
+      "title": "Integrated Transaction Statistics",
+      "description": "Automatically record and integrate transaction records and payment trend analysis, helping merchants better grasp operational data."
+    },
+    "apiIntegration": {
+      "title": "Simple and Efficient API Integration",
+      "description": "Integrate TaroPay's API into your business process to provide a smooth and convenient payment experience for your customers."
+    },
+    "globalBusiness": {
+      "title": "Expand Your Global Business",
+      "description": "Multi-layered system management, more suitable for global group enterprises and merchants, clearly tracking multi-level systems."
+    }
+  },
   "Features": {
     "title": "Products & Services",
     "subtitle": "Comprehensive payment solutions designed for global businesses",
@@ -74,24 +113,34 @@
     "titles": {
       "learnmore": "Learn More About TaroPay Products"
     },
+    "hero": {
+      "title": "Experience Fast and Secure Global Payment Services!",
+      "description": "TaroPay is committed to building an efficient, secure, and convenient payment platform that supports payment needs in numerous countries and regions. We use advanced encryption technology and security measures to ensure transaction security and personal information privacy.",
+      "cta": "Explore Our Services"
+    },
     "statistics": {
       "title": "Smart Business Analytics",
+      "subtitle": "Daily Operations, Natural Control",
       "description": "Through clear transaction statistics and intuitive business trends, you can better grasp marketing direction, easily control daily operations, and naturally lead business success."
     },
     "global": {
       "title": "Global Payment Solutions",
+      "subtitle": "Convenient and Fast Local Merchant Account Opening",
       "description": "Based on a one-stop payment processing platform, we will help you enter new markets, quickly introduce multiple payment methods, and open broader payment channels. Partner with us for unlimited possibilities and unstoppable business growth!"
     },
     "gateway": {
       "title": "Easy Payment Gateway Integration",
+      "subtitle": "Multi-language API Integration",
       "description": "We are committed to making payment experience fast, easy and seamless. Explore our payment gateway to learn how to quickly integrate and make your payment process simple and efficient, boosting user satisfaction!"
     },
     "riskcontrol": {
       "title": "Flexible Dynamic Risk Control",
+      "subtitle": "Global Payments, Risk Protection",
       "description": "We provide flexible and reliable risk control modules, customizing comprehensive and effective risk control solutions according to merchants' business scenarios. Real-time monitoring and analysis of all transactions to identify abnormal payment orders and effectively protect merchants' funds and transaction security."
     },
     "accounting": {
       "title": "Simplified Accounting",
+      "subtitle": "Configure Your Dedicated Account in Simple Steps",
       "description": "TaroPay integrates your merchant account to the cloud, making reconciliation effortless. With simple steps, you can quickly open your dedicated account and enjoy convenient and efficient payment management experience!"
     },
     "multilang": {

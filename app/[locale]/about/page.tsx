@@ -50,16 +50,15 @@ export default async function AboutPage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  // 验证params但不需要使用locale
-  await params;
+  const { locale } = await params;
 
   return (
     <div className="min-h-screen bg-gray-900">
-      <Header />
+      <Header key={`header-${locale}`} />
       <div className="pt-16">
-        <About />
+        <About key={`about-${locale}`} />
       </div>
-      <Footer />
+      <Footer key={`footer-${locale}`} />
     </div>
   );
 }

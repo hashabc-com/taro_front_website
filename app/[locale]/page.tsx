@@ -1,7 +1,9 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
+import OneStop from "@/components/OneStop";
 import GlobalCoverage from "@/components/GlobalCoverage";
+import GetStarted from "@/components/GetStarted";
 import Footer from "@/components/Footer";
 import { generateMetadata as generateSEOMetadata } from "@/components/SEO";
 import { Metadata } from "next";
@@ -56,16 +58,17 @@ export default async function Home({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  // 验证params但不需要使用locale和t
-  await params;
+  const { locale } = await params;
 
   return (
     <div className="min-h-screen bg-gray-900">
-      <Header />
-      <Hero />
-      <GlobalCoverage />
-      <Features />
-      <Footer />
+      <Header key={`header-${locale}`} />
+      <Hero key={`hero-${locale}`} />
+      <Features key={`features-${locale}`} />
+      <OneStop key={`onestop-${locale}`} />
+      <GlobalCoverage key={`coverage-${locale}`} />
+      <GetStarted key={`getstarted-${locale}`} />
+      <Footer key={`footer-${locale}`} />
     </div>
   );
 }

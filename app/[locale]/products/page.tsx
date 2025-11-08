@@ -52,16 +52,13 @@ export default async function ProductsPage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  // 验证params但不需要使用locale
-  await params;
+  const { locale } = await params;
 
   return (
     <div className="min-h-screen bg-gray-900">
-      <Header />
-      <div className="pt-16">
-        <Products />
-      </div>
-      <Footer />
+      <Header key={`header-${locale}`} />
+      <Products key={`products-${locale}`} />
+      <Footer key={`footer-${locale}`} />
     </div>
   );
 }

@@ -1,175 +1,203 @@
 "use client";
-import { useRef, useEffect } from "react";
+
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
-import {
-  ChartBarIcon,
-  GlobeAltIcon,
-  CreditCardIcon,
-  ShieldCheckIcon,
-  DocumentTextIcon,
-  CodeBracketIcon,
-} from "@heroicons/react/24/outline";
+import Image from "next/image";
+import AnimatedSection from "./AnimatedSection";
+import Globe3D from "./Globe3D";
+import statisticsImg from "@/app/assets/statistics.png";
+import globalImg from "@/app/assets/global.png";
+import gatewayImg from "@/app/assets/gateway.png";
+import riskImg from "@/app/assets/risk.png";
+import bookkeeping1Img from "@/app/assets/bookkeeping1.png";
+import bookkeeping2Img from "@/app/assets/bookkeeping2.png";
 
 export default function Products() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
   const t = useTranslations("Products");
-
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    // 使用CSS类来触发动画，避免GSAP的复杂性
-    const timer = setTimeout(() => {
-      // 触发标题动画
-      if (titleRef.current) {
-        titleRef.current.classList.remove("opacity-0", "translate-y-5");
-        titleRef.current.classList.add("opacity-100", "translate-y-0");
-      }
-
-      // 触发卡片动画
-      if (cardsRef.current) {
-        const cards = cardsRef.current.querySelectorAll(".product-card");
-        cards.forEach((card) => {
-          (card as HTMLElement).classList.remove("opacity-0", "translate-y-4");
-          (card as HTMLElement).classList.add("opacity-100", "translate-y-0");
-        });
-      }
-    }, 100); // 短暂延迟确保DOM准备好
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
 
   const products = [
     {
       id: "statistics",
-      icon: ChartBarIcon,
       title: t("statistics.title"),
+      subtitle: t("statistics.subtitle"),
       description: t("statistics.description"),
-      gradient: "from-blue-500 to-cyan-500",
+      image: statisticsImg,
+      imageAlt: "智能的经营统计分析",
+      reverse: false,
+      bgColor: "bg-gray-900",
     },
     {
       id: "global",
-      icon: GlobeAltIcon,
       title: t("global.title"),
+      subtitle: t("global.subtitle"),
       description: t("global.description"),
-      gradient: "from-purple-500 to-pink-500",
+      image: globalImg,
+      imageAlt: "全球支付解决方案",
+      reverse: true,
+      bgColor: "bg-gray-800",
     },
     {
       id: "gateway",
-      icon: CreditCardIcon,
       title: t("gateway.title"),
+      subtitle: t("gateway.subtitle"),
       description: t("gateway.description"),
-      gradient: "from-green-500 to-emerald-500",
+      image: gatewayImg,
+      imageAlt: "便捷接入支付网关",
+      reverse: false,
+      bgColor: "bg-gray-900",
     },
     {
       id: "riskcontrol",
-      icon: ShieldCheckIcon,
       title: t("riskcontrol.title"),
+      subtitle: t("riskcontrol.subtitle"),
       description: t("riskcontrol.description"),
-      gradient: "from-red-500 to-orange-500",
+      image: riskImg,
+      imageAlt: "灵活动态的风控模块",
+      reverse: true,
+      bgColor: "bg-gray-800",
     },
     {
       id: "accounting",
-      icon: DocumentTextIcon,
       title: t("accounting.title"),
+      subtitle: t("accounting.subtitle"),
       description: t("accounting.description"),
-      gradient: "from-indigo-500 to-blue-500",
-    },
-    {
-      id: "multilang",
-      icon: CodeBracketIcon,
-      title: t("multilang.title"),
-      description: t("multilang.description"),
-      gradient: "from-yellow-500 to-amber-500",
+      images: [bookkeeping1Img, bookkeeping2Img],
+      imageAlt: "记账更简易",
+      reverse: false,
+      bgColor: "bg-gray-900",
     },
   ];
 
   return (
-    <section
-      ref={sectionRef}
-      id="products"
-      className="py-24 sm:py-32 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 transform-gpu"
-    >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div
-          ref={titleRef}
-          className="mx-auto max-w-2xl text-center opacity-0 translate-y-5 transition-all duration-500 ease-out"
-        >
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            {t("title")}
-          </h2>
-          <p className="mt-6 text-lg leading-8 text-gray-300">
-            {t("subtitle")}
-          </p>
-        </div>
-
-        <div ref={cardsRef} className="mx-auto mt-16 max-w-7xl">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {products.map((product, index) => (
-              <div
-                key={index}
-                id={product.id}
-                className="product-card opacity-0 translate-y-4 transition-all duration-300 ease-out group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-8 backdrop-blur-sm border border-gray-700/50 hover:border-gray-600/50 hover:transform hover:scale-[1.01] will-change-transform scroll-mt-24"
-                style={{ transitionDelay: `${index * 30}ms` }}
-              >
-                {/* Background gradient overlay */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
-                />
-
-                {/* Icon */}
-                <div
-                  className={`relative inline-flex p-3 rounded-lg bg-gradient-to-r ${product.gradient} shadow-lg group-hover:shadow-xl transition-shadow duration-300`}
-                >
-                  <product.icon className="h-6 w-6 text-white" />
-                </div>
-
-                {/* Content */}
-                <div className="relative mt-6">
-                  <h3 className="text-xl font-semibold text-white group-hover:text-blue-300 transition-colors duration-300">
-                    {product.title}
-                  </h3>
-                  <p className="mt-4 text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
-                    {product.description}
-                  </p>
-                </div>
-
-                {/* Decorative elements */}
-                <div className="absolute top-4 right-4 h-16 w-16 rounded-full bg-gradient-to-br from-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute bottom-4 right-4 h-8 w-8 rounded-full bg-gradient-to-br from-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              </div>
-            ))}
+    <div className="bg-gray-900">
+      {/* Hero Section */}
+      <AnimatedSection
+        animationType="fadeUp"
+        className="pt-32 pb-24 lg:pt-40 lg:pb-32 bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 relative overflow-hidden min-h-[60vh] flex items-center"
+      >
+        {/* 3D Globe Background */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-full h-full max-w-2xl">
+            <Globe3D />
           </div>
         </div>
 
-        {/* Call to action */}
-        <div className="mt-20 text-center">
-          <Link
-            href="/about"
-            title={t("titles.learnmore")}
-            className="inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group"
-          >
-            <span className="text-lg font-semibold">{t("learnmore")}</span>
-            <svg
-              className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </Link>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10 w-full">
+          <div className="text-center animate-item">
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              {t("hero.title")}
+            </h1>
+            <p className="mt-6 text-xl leading-8 text-gray-300 max-w-3xl mx-auto">
+              {t("hero.description")}
+            </p>
+            <div className="mt-10">
+              <a
+                href="#statistics"
+                className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105"
+              >
+                {t("hero.cta")}
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </AnimatedSection>
+
+      {/* Products Sections */}
+      {products.map((product, index) => (
+        <section
+          key={product.id}
+          id={product.id}
+          className={`py-20 lg:py-28 ${product.bgColor}`}
+        >
+          <AnimatedSection
+            animationType={product.reverse ? "fadeLeft" : "fadeRight"}
+          >
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+              <div
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${product.reverse ? "lg:flex-row-reverse" : ""}`}
+              >
+                {/* Text Content */}
+                <div
+                  className={`animate-item ${product.reverse ? "lg:order-2" : ""}`}
+                >
+                  <div className="space-y-6">
+                    {product.subtitle && (
+                      <div className="inline-block">
+                        <span className="inline-flex items-center gap-2 rounded-full bg-blue-600/20 px-4 py-2 text-sm font-semibold text-blue-400 border border-blue-500/30">
+                          <svg
+                            className="h-4 w-4"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                          {product.subtitle}
+                        </span>
+                      </div>
+                    )}
+                    <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+                      {product.title}
+                    </h2>
+                    <p className="text-lg leading-8 text-gray-300">
+                      {product.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Image Content */}
+                <div
+                  className={`animate-item ${product.reverse ? "lg:order-1" : ""}`}
+                >
+                  {product.images ? (
+                    // Multiple images for accounting section
+                    <div className="grid grid-cols-2 gap-4">
+                      {product.images.map((img, idx) => (
+                        <div
+                          key={idx}
+                          className="relative rounded-2xl overflow-hidden transition-all duration-300"
+                        >
+                          <Image
+                            src={img}
+                            alt={`${product.imageAlt} ${idx + 1}`}
+                            className="w-full h-auto"
+                            priority={index === 0}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    // Single image
+                    <div className="relative rounded-2xl overflow-hidden transition-all duration-300">
+                      <Image
+                        src={product.image!}
+                        alt={product.imageAlt}
+                        className="w-full h-auto"
+                        priority={index === 0}
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+        </section>
+      ))}
+    </div>
   );
 }
