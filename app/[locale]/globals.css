@@ -40,6 +40,12 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+}
+
+/* 防止页面加载时滚动 */
+html {
+  overflow-anchor: none;
 }
 
 /* Header 特殊样式确保无间距 */

@@ -32,56 +32,42 @@ export default function Hero() {
   const imageRef = useRef<HTMLDivElement>(null);
 
   const [titleText, setTitleText] = useState("");
-  const [subtitleText, setSubtitleText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
   const [isTyping, setIsTyping] = useState(true);
 
   const fullTitle = t("title");
   const fullSubtitle = `${t("subtitle")}. ${t("description")}.`;
 
+  // 页面加载时滚动到顶部
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     let titleInterval: NodeJS.Timeout;
-    let subtitleInterval: NodeJS.Timeout;
-    let pauseTimeout: NodeJS.Timeout;
     let restartTimeout: NodeJS.Timeout;
 
     const startTyping = () => {
       setIsTyping(true);
       setTitleText("");
-      setSubtitleText("");
 
       let titleIndex = 0;
 
-      // 标题打字 - 降低速度到 120ms
+      // 标题打字 - 加快速度到 60ms
       titleInterval = setInterval(() => {
         if (titleIndex < fullTitle.length) {
           setTitleText(fullTitle.slice(0, titleIndex + 1));
           titleIndex++;
         } else {
           clearInterval(titleInterval);
+          setIsTyping(false);
 
-          // 标题打完后等待 300ms 开始副标题
-          pauseTimeout = setTimeout(() => {
-            let subtitleIndex = 0;
-
-            // 副标题打字 - 降低速度到 50ms
-            subtitleInterval = setInterval(() => {
-              if (subtitleIndex < fullSubtitle.length) {
-                setSubtitleText(fullSubtitle.slice(0, subtitleIndex + 1));
-                subtitleIndex++;
-              } else {
-                clearInterval(subtitleInterval);
-                setIsTyping(false);
-
-                // 打完后等待 3 秒，然后重新开始
-                restartTimeout = setTimeout(() => {
-                  startTyping();
-                }, 3000);
-              }
-            }, 50);
-          }, 300);
+          // 打完后等待 3 秒，然后重新开始
+          restartTimeout = setTimeout(() => {
+            startTyping();
+          }, 3000);
         }
-      }, 120);
+      }, 60);
     };
 
     // 启动打字机效果
@@ -89,8 +75,6 @@ export default function Hero() {
 
     return () => {
       clearInterval(titleInterval);
-      clearInterval(subtitleInterval);
-      clearTimeout(pauseTimeout);
       clearTimeout(restartTimeout);
     };
   }, [fullTitle, fullSubtitle]);
@@ -121,6 +105,24 @@ export default function Hero() {
         });
       }
 
+      // 副标题动画 - 透明-平移-显示效果
+      if (subtitleRef.current) {
+        gsap.fromTo(
+          subtitleRef.current,
+          {
+            x: -30,
+            opacity: 0,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.6,
+            delay: 0.8, // 减少延迟
+            ease: "power2.out",
+          },
+        );
+      }
+
       // 按钮动画
       if (buttonsRef.current) {
         gsap.fromTo(
@@ -134,8 +136,8 @@ export default function Hero() {
             y: 0,
             opacity: 1,
             scale: 1,
-            duration: 0.8,
-            delay: 2.5, // 等待打字机效果
+            duration: 0.6,
+            delay: 1.2, // 减少延迟
             ease: "power2.out",
           },
         );
@@ -154,8 +156,8 @@ export default function Hero() {
             x: 0,
             opacity: 1,
             scale: 1,
-            duration: 1.2,
-            delay: 1,
+            duration: 0.8,
+            delay: 0.3, // 减少延迟，让图片更早出现
             ease: "power2.out",
           },
         );
@@ -174,8 +176,8 @@ export default function Hero() {
             y: 0,
             opacity: 1,
             scale: 1,
-            duration: 0.8,
-            delay: 3,
+            duration: 0.6,
+            delay: 1.5, // 减少延迟
             ease: "power2.out",
           },
         );
@@ -207,7 +209,7 @@ export default function Hero() {
         />
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-32 pb-24 sm:pt-40 sm:pb-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-28 pb-24 sm:pb-32">
         {/* 左右布局 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* 左侧内容 */}
@@ -230,15 +232,9 @@ export default function Hero() {
             <div className="h-32 mt-3 overflow-hidden">
               <p
                 ref={subtitleRef}
-                className="text-lg leading-8 text-gray-300 max-w-2xl"
+                className="text-lg leading-8 text-gray-300 max-w-2xl opacity-0"
               >
-                {subtitleText}
-                {((isTyping &&
-                  titleText.length >= fullTitle.length &&
-                  subtitleText.length > 0) ||
-                  (!isTyping && showCursor)) && (
-                  <span className="inline-block w-0.5 h-[1em] bg-gray-300 ml-0.5 relative top-[0.15em] animate-pulse"></span>
-                )}
+                {fullSubtitle}
               </p>
             </div>
 
@@ -291,7 +287,7 @@ export default function Hero() {
         {/* Features grid */}
         <div
           ref={statsRef}
-          className="mt-20 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 opacity-0"
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 opacity-0"
         >
           {[
             {
