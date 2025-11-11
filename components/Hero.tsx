@@ -305,7 +305,7 @@ export default function Hero() {
               borderColor: "bg-green-500",
             },
             {
-              title: "<1s",
+              title: "<10ms",
               subtitle: t("stats.speed"),
               icon: BoltIcon,
               hoverColor: "group-hover:text-yellow-400",
