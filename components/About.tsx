@@ -239,7 +239,7 @@ export default function About() {
             <div
               onClick={() =>
                 window.open(
-                  "https://t.me/Young168l",
+                  "https://t.me/dd666dd",
                   "_blank",
                   "noopener,noreferrer",
                 )
